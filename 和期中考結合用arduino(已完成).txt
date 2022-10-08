@@ -1,0 +1,38 @@
+int left=0;
+int shoot = 0;
+int right = 0;
+
+int leftPin = 5; // Switch connected to pin 4
+int shootPin = 4;
+int rightPin = 3;
+void setup() {
+pinMode(left, INPUT); // Set pin 0 as an input
+pinMode(shoot, INPUT);
+pinMode(right, INPUT);
+Serial.begin(9600); // Start serial communication at 9600 bps
+}
+void loop() {
+ int i,j,k=0;
+ left =digitalRead(leftPin);
+ shoot =digitalRead(shootPin); 
+ right =digitalRead(rightPin);
+
+ if (shoot == HIGH)
+    k = 100;
+  else
+    k = 0;
+
+  if (left == HIGH && right == LOW)
+    i = 1;
+  else if (left == LOW && right == HIGH)
+    i = 2;
+  else
+    i = 0;
+  
+
+Serial.write(k+i);
+Serial.println(k+i);
+
+
+delay(100); // Wait 100 milliseconds
+}

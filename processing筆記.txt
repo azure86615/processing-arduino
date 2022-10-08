@@ -1,0 +1,86 @@
+上課網址:http://hwshow-im.blogspot.tw/
+
+
+重要：先填色再圈區域
+
+
+
+【基礎幾何圖形】
+	＊畫圖請參考P28
+	size：開啟視窗的長寬 (寬,高)
+	background：設定背景顏色 (red, green, blue)
+	stroke：線條顏色(red, green, blue)，預設黑色
+          	   noStroke：無線條
+	fill：區域顏色(red, green, blue, 透明度)，預設白色，透明度越低越透明
+    		   noFill：區域無填色
+	ellipse：畫圓 (x, y, 寬, 高)
+	rect ( x, y, width, height ) : 畫矩形
+	strokeWeight ()：控制外框粗細，參數int
+
+	想法：新畫面>>背景刷色
+
+
+【內建函式】
+	void setup(){}  相當於 C的main
+		裡面可以寫 frameRate( float )  ：每秒執行幾次draw
+	void draw(){} 相當於 C#的Update  
+
+
+
+【滑鼠相關】
+	mouseX 跟 mouseY 可得到滑鼠的座標值
+	pmouseX跟pmouseY可以取得上一個frame的mouseXY
+
+	mousePressed == TRUE / FALSE 表示按滑鼠與否
+	mouseButton == LEFT / RIGHT 表示按滑鼠的左或右鍵
+
+
+	想法：製作按鈕的話，可用if判斷滑鼠是否在"特定區域"點擊來進行
+
+【鍵盤互動】
+	if ((keyPressed == true) && (key == 'w')) 	//鍵盤按w時執行
+
+
+
+【字串】
+	string aaaaa = "字串名稱" ：建立文字用的字串
+	text(aaaaa, x, y)：顯示文字
+	textSize (int)：字串大小
+	fill (r,g,b)：可控制字串顏色
+	也可直接text("ajskdlf", x, y)
+
+
+	String t =nf(time,2);	//此處nf的功能可以將不滿2位的數字補0
+  	text(t,500,50);
+
+
+
+【圖片相關】
+	save("專案名稱") ：存取畫出的圖
+	＊必須先另存出該專案
+
+	PImage imgFront = loadImage(front +"t.jpg");  	//載入名為?t.jpg的圖片並將其定為 imgFront (PImage為type)
+	image(imgFront, x, y);				//顯示imgFront的位置於x,y
+
+
+
+【隨行效果】
+	for (int i = num-1; i > 0; i--) {
+	x[i] = x[i-1];
+	y[i] = y[i-1];
+	
+	x[0] = mouseX;
+	y[0] = mouseY;
+
+
+【java陣列寫法】
+	int[] a= new int[50];	建立名為a的陣列，50個
+
+【隨機數字】
+	a = random (上限);
+	或
+	a = random (下限，上限);
+
+
+【時間相關】
+	P.245

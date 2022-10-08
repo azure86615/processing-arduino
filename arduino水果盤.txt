@@ -1,0 +1,69 @@
+int button ;
+int spdlv = 0;
+int spdPin = A0; 
+int i = 13;
+int music = 5;
+int len = 15;
+char notes[] = "ccggaagffeeddc "; 
+int beats[] = { 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 4 };
+int tempo = 300;
+int push = 3;
+void setup() {
+  // put your setup code here, to run once:
+  for (int i=13;i>8;i--)
+    pinMode(i,OUTPUT);
+    pinMode(push,INPUT);
+    pinMode (music,OUTPUT);
+    Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  button = digitalRead (push);
+  Serial.println(button);
+  if(button == LOW){
+    //Serial.println(spdlv);    
+      digitalWrite (i,HIGH);
+      spdlv = analogRead(spdPin);
+      delay(spdlv);
+      digitalWrite (i,LOW);
+  }
+  else if (button == HIGH && i!=11){
+      digitalWrite (i,HIGH);
+      delay (2000);
+      digitalWrite(i,LOW);
+    }
+   else if (button == HIGH && i==11){
+      playmusic();
+    }
+   i--;
+   if (i==8)
+     i=13;
+}
+
+void playmusic(){
+  for (int j =0 ; j< len ;j++){
+      if (notes[j] == ' '){
+        delay (beats[j] * tempo);
+        }else
+          playNote(notes[j],beats[j]* tempo);
+    }
+  }
+void playNote(char note, int duration) {
+  char names[] = { 'c', 'd', 'e', 'f', 'g', 'a', 'b', 'C' };
+  int tones[] = { 1915, 1700, 1519, 1432, 1275, 1136, 1014, 956 };
+
+  for (int s = 0; s < 8; s++) {
+    if (names[s] == note) {
+      playTone(tones[s], duration);
+    }
+  }
+}
+void playTone(int tone, int duration) {
+  for (long k = 0; k < duration * 1000L; k += tone * 2) {
+    digitalWrite(music, HIGH);
+    delayMicroseconds(tone);
+    digitalWrite(music, LOW);
+    delayMicroseconds(tone);
+  }
+}

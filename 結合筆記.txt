@@ -1,0 +1,24 @@
+【arduino端】
+setup()裡
+	Serial.begin(9600);
+loop()裡
+	Serial.write (k); 	//將k值傳到processing
+	Serial.println(i);   	//將讀取的數值i顯示在serialmonitor(【工具】>>【序列port監控視窗】)
+
+
+
+
+
+
+【processing端】
+import processing.serial.*;
+Serial port; 		//宣告Serial type的變數port
+
+setup()裡
+	println(Serial.list()); //顯示com，看看需要用哪個 (配合下行)
+	String portName = Serial.list()[2];	//使用陣列的第二項
+	port = new Serial(this, portName,9600);
+draw()裡
+	if (0<port.available()){	//如果data是available
+		val = port.read();	//讀arduino值，存成變數val
+	}
